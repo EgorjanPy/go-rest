@@ -29,7 +29,7 @@ func MustLoad() *Config {
 		log.Fatalf("Config path is empty")
 	}
 	if _, err := os.Stat(*config_path); os.IsNotExist(err) {
-		log.Fatalf("Config path is incorrect: %s", config_path)
+		log.Fatalf("Config path is incorrect: %s", *config_path)
 	}
 	var cfg Config
 	err := cleanenv.ReadConfig(*config_path, &cfg)
