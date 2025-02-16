@@ -15,15 +15,13 @@ type Config struct {
 	HttpServer  HTTPServer `yaml:"http_server"`
 }
 type HTTPServer struct {
-	Addres       string        `yaml: "addres" env-default:"localhost:8080"`
-	Timeout      time.Duration `yaml: "timeout" env-default: "4s"`
+	Addres       string        `yaml:"addres" env-default:"localhost:8080"`
+	Timeout      time.Duration `yaml:"timeout" env-default:"4s"`
 	Idle_timeout time.Duration `yaml:"idle_timeout" env-default:"60s"`
 }
 
 func MustLoad() *Config {
-	// config_path := os.Getenv("CONFIG_PATH")
 	config_path := flag.String("CONFIG_PATH", "./config/local.yaml", "")
-	// config_path := "./config/local.yaml"
 	flag.Parse()
 	if *config_path == "" {
 		log.Fatalf("Config path is empty")
